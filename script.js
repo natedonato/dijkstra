@@ -192,6 +192,13 @@ class Visualizer{
 
 
     drawLinesSlowly(lines){
+        if(this.int){
+
+            clearInterval(this.int)
+            this.clearCanvas();
+            this.drawEdges();
+            this.drawPoints();
+        }
 
         const drawPath = this.drawPath.bind(this);
 
