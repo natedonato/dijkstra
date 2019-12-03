@@ -17,7 +17,7 @@
 
     </canvas>
     <div></div>
-    <button id="populate"> Populate graph nodes</button>
+    <button id="populate"> Repopulate graph nodes</button>
     <button id="search"> Search for shortest path</button>
     <div id="distance" style='display: inline;'> </div>
     <div class="slidecontainer" style="display: flex; text-align: center;">
@@ -35,12 +35,14 @@
     <p style="width: 800px">
         "Dijkstra's algorithm (or Dijkstra's Shortest Path First algorithm, SPF algorithm) is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist Edsger W. Dijkstra in 1956 and published three years later." (<a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">-Wikipedia</a>)
 
-        <br /><br />This is an interractive visual implementation which can generate a random undirected graph and use Dijkstra's algorithm to draw the shortest path between two randomly selected points, if such a path exists. 
+        <br /><br />This is an interractive visual implementation which can generate a random undirected graph and use Dijkstra's algorithm to draw the shortest path between two randomly selected points, if such a path exists.  Known issues: occasionally points or paths will overlap visually.
 
 
     </p>
     
-    
+    <p style='font-size: 12px;'>
+        Made by <a href='https://www.natedonato.com/'>Nate Donato</a>.
+    </p>
     
     <script src='./script.js'></script>
 

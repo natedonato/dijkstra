@@ -247,7 +247,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
    
     const vis = new Visualizer(width, height, ctx, distance);
-
+    vis.generatePoints();
+    vis.dijkstra();
 
     let populate = document.getElementById('populate');
     let search = document.getElementById('search');
@@ -257,6 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     populate.onclick = ()=>vis.generatePoints();
     search.onclick = ()=>vis.dijkstra();
+    
 
     const slider = document.getElementById("nodeSlider");
     const slider2 = document.getElementById("pathFrequency");
