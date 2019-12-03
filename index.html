@@ -33,9 +33,10 @@
 
 
     <p style="width: 800px">
-        "Dijkstra's algorithm (or Dijkstra's Shortest Path First algorithm, SPF algorithm) is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist Edsger W. Dijkstra in 1956 and published three years later." (<a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">-Wikipedia</a>)
+        "Dijkstra's algorithm (or Dijkstra's Shortest Path First algorithm, SPF algorithm) is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist Edsger W. Dijkstra in 1956 and published three years later." <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">-Wikipedia</a>
 
-        <br /><br />This is an interractive visual implementation which can generate a random undirected graph and use Dijkstra's algorithm to draw the shortest path between two randomly selected points, if such a path exists.  Known issues: occasionally points or paths will overlap visually.
+        <br /><br />This is an interractive visual implementation which can generate a random undirected graph and use Dijkstra's algorithm to draw the shortest path between two randomly selected points, if such a path exists.  New graphs can be generated with sliders to adjust the number of nodes and frequency of edges.  This implementation follows the original Dijkstra algorithm and stop the search as soon as the target path is found, rather than continuing to build a shortest-path-tree to every node (a common variant on the algorithm).
+        <br /><br />Known issues: occasionally points or paths will overlap visually without actually sharing a direct graph connection / edge, especially as the graph grows visually cluttered with large numbers of points or edges.  The algorithm uses a naive version of a priority queue but worst case runtimes could be improved with a Fibonacci heap based queue.
 
 
     </p>
