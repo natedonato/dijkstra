@@ -178,7 +178,6 @@ class Visualizer{
                 }
             })
         }
-        debugger;
         if(!solved){
             this.ctx.font = '48px serif';
             this.ctx.fillText("No connection to target", 10, 50);
