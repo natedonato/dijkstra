@@ -1,5 +1,5 @@
 class Visualizer{
-    constructor(w, h, ctx, distance){
+    constructor(w, h, ctx, distance, nodeSlider, pathFrequency){
         this.points = [];
         this.edges = {};
         this.int = 0;
@@ -7,9 +7,12 @@ class Visualizer{
         this.height = h;
         this.ctx = ctx;
         this.distance = distance;
+        this.nodeNumber = 15;
+        this.pathFrequency = 0.8;
     }
 
-    generatePoints = (x) =>{
+    generatePoints = () =>{
+        let x = this.nodeNumber;
         this.distance.innerText = "";
         clearInterval(this.int);
         this.points = [];
@@ -27,7 +30,8 @@ class Visualizer{
     }
 
 
-    generateEdges = (threshold = 0.8) => {
+    generateEdges = () => {
+        const threshold = this.pathFrequency;
         this.points.forEach(point1 => 
             this.points.forEach(point2 =>{
                 if(point1 !== point2 && Math.random() > threshold ){
@@ -135,6 +139,7 @@ class Visualizer{
         let queue = [...this.points];
         let node;
         let lines = [];
+        let solved = false;
         while(queue.length > 0){
 
             let distances = queue.map(el => el.distance)
@@ -156,6 +161,9 @@ class Visualizer{
             visited.add(node);
 
             if(node.id === this.points.length - 1){
+                if(node.distance !== Infinity){
+                    solved = true;
+                }
                 break;
             }
 
@@ -170,11 +178,10 @@ class Visualizer{
                 }
             })
         }
-
-        if(node.distance === Infinity){
+        debugger;
+        if(!solved){
             this.ctx.font = '48px serif';
             this.ctx.fillText("No connection to target", 10, 50);
-
         }
         else{
             while(node.parent !== null){
@@ -192,6 +199,7 @@ class Visualizer{
 
 
     drawLinesSlowly(lines){
+        
         if(this.int){
 
             clearInterval(this.int)
@@ -200,11 +208,15 @@ class Visualizer{
             this.drawPoints();
         }
 
+        if(lines.length === 0){
+            return;
+        }
+
         const drawPath = this.drawPath.bind(this);
 
 
         let int = setInterval( 
-            handleThing, 1000
+            handleThing, 800
         )
         let i = 0
 
@@ -234,16 +246,29 @@ document.addEventListener("DOMContentLoaded", () => {
     let distance = document.getElementById('distance');
 
 
+   
     const vis = new Visualizer(width, height, ctx, distance);
 
 
     let populate = document.getElementById('populate');
     let search = document.getElementById('search');
 
+  
 
 
-    populate.onclick = ()=>vis.generatePoints(15);
+    populate.onclick = ()=>vis.generatePoints();
     search.onclick = ()=>vis.dijkstra();
+
+    const slider = document.getElementById("nodeSlider");
+    const slider2 = document.getElementById("pathFrequency");
+
+    slider.oninput = function() {
+        vis.nodeNumber = this.value; 
+      }
+      slider2.oninput = function() {
+        vis.pathFrequency = (100 - this.value) / 100; 
+      }
+
 
 
 });
